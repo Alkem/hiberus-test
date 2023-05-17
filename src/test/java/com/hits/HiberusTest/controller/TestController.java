@@ -9,6 +9,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.hamcrest.CoreMatchers.is;
+
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -31,7 +34,8 @@ public class TestController {
                         .isOk())
                 .andExpect(MockMvcResultMatchers
                         .content()
-                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("@.price", is(35.5)));
     }
 
 
@@ -48,7 +52,8 @@ public class TestController {
                         .isOk())
                 .andExpect(MockMvcResultMatchers
                         .content()
-                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.price", is(25.45)));
     }
 
 
@@ -65,7 +70,8 @@ public class TestController {
                         .isOk())
                 .andExpect(MockMvcResultMatchers
                         .content()
-                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.price", is(35.5)));
     }
 
 
@@ -82,7 +88,8 @@ public class TestController {
                         .isOk())
                 .andExpect(MockMvcResultMatchers
                         .content()
-                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.price", is(30.5)));
     }
 
 
@@ -99,6 +106,7 @@ public class TestController {
                         .isOk())
                 .andExpect(MockMvcResultMatchers
                         .content()
-                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.price", is(38.95)));
     }
 }
